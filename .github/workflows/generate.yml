@@ -1,0 +1,61 @@
+name: Generate Game Music
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: 'Descricao base (ex: boss fight intenso)'
+        default: 'intense game music'
+      style:
+        description: 'Estilo: breakcore_chaotic, boss_fight, 8bit, 16bit, modern, tense, calm, dungeon, victory, horror, cyberpunk, fantasy'
+        default: 'boss_fight'
+      duration:
+        description: 'Duracao em segundos'
+        default: '20'
+      temperature:
+        description: 'Temperatura (0.5-1.5)'
+        default: '1.0'
+      use_soundfont:
+        description: 'Usar soundfont? (true/false)'
+        default: 'false'
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - name: Install system deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fluidsynth
+      - name: Install Python deps
+        run: |
+          pip install --upgrade pip
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install transformers accelerate peft soundfile scipy numpy
+          pip install basic-pitch || echo "basic-pitch falhou, continuando sem"
+      - name: Generate
+        env:
+          PYTHONUNBUFFERED: 1
+        run: |
+          python generate.py --prompt "${{ github.event.inputs.prompt }}" --style "${{ github.event.inputs.style }}" --duration ${{ github.event.inputs.duration }} --temperature ${{ github.event.inputs.temperature }} --use-soundfont ${{ github.event.inputs.use_soundfont == 'true' && '--use-soundfont' || '' }}
+      - name: Upload generated audio
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-music
+          path: outputs/
+          retention-days: 30
+      - name: Commit generated audio
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          mkdir -p generated
+          cp outputs/*.wav outputs/*.mp3 generated/ 2>/dev/null || true
+          git add generated/ || true
+          git commit -m "New generated music [skip ci]" || echo "No changes"
+          git push || echo "Push skipped"
