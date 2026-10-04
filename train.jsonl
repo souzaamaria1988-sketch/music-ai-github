@@ -1,5 +1,5 @@
-{"text": "energetic rock with electric guitar and drums", "audio": "audio/sample_000.wav", "genre": "rock", "category": "rock", "bpm": 120, "mood": "energetic"}
-{"text": "smooth jazz with saxophone and piano", "audio": "audio/sample_001.wav", "genre": "jazz", "category": "jazz", "bpm": 90, "mood": "relaxed"}
-{"text": "electronic dance music with synth", "audio": "audio/sample_002.wav", "genre": "electronic", "category": "electronic", "bpm": 128, "mood": "uplifting"}
-{"text": "classical piano sonata", "audio": "audio/sample_003.wav", "genre": "classical", "category": "classical", "bpm": 80, "mood": "peaceful"}
-{"text": "hip hop beat with 808 bass", "audio": "audio/sample_004.wav", "genre": "hiphop", "category": "hiphop", "bpm": 140, "mood": "dark"}
+{"text":"chaotic breakcore boss fight, glitchy drums, distorted bass","audio":"audio/sample_000.wav","genre":"Breakcore","category":"game","bpm":180,"mood":"chaotic"}
+{"text":"epic boss fight orchestral theme with brass and choir","audio":"audio/sample_001.wav","genre":"Boss Fight","category":"game","bpm":140,"mood":"epic"}
+{"text":"8-bit chiptune NES style with square waves","audio":"audio/sample_002.wav","genre":"Chiptune","category":"game","bpm":150,"mood":"retro"}
+{"text":"16-bit SNES RPG battle theme with FM synth","audio":"audio/sample_003.wav","genre":"16-bit","category":"game","bpm":135,"mood":"adventurous"}
+{"text":"modern AAA cinematic game soundtrack hybrid orchestral electronic","audio":"audio/sample_004.wav","genre":"Modern","category":"game","bpm":120,"mood":"cinematic"}
