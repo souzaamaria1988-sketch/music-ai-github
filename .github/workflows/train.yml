@@ -1,0 +1,50 @@
+name: Train Music AI
+on:
+  workflow_dispatch:
+    inputs:
+      epochs:
+        description: 'Epochs'
+        default: '50'
+      batch:
+        description: 'Batch size'
+        default: '1'
+      grad_accum:
+        description: 'Grad accumulation'
+        default: '8'
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install Python deps
+        run: |
+          pip install --upgrade pip
+          pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+          pip install transformers accelerate peft soundfile scipy numpy
+      - name: Check dataset
+        run: |
+          head -2 train.jsonl
+          ls audio/*.wav | wc -l
+      - name: Train
+        env:
+          PYTHONUNBUFFERED: 1
+        run: |
+          python train.py --epochs ${{ github.event.inputs.epochs || 50 }} --batch ${{ github.event.inputs.batch || 1 }} --grad-accum ${{ github.event.inputs.grad_accum || 8 }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: trained-model
+          path: checkpoints/final/
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: training-logs
+          path: train.log
+          retention-days: 30
