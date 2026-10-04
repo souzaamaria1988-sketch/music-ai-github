@@ -1,0 +1,89 @@
+{
+  "_comment": "Estilos de musica de jogo. Use style_key no workflow generate.",
+  "game_music_styles": {
+    "breakcore_chaotic": {
+      "label": "Breakcore Caotico (Boss Fight)",
+      "prompt_prefix": "chaotic breakcore, glitchy drums, distorted bass, amen breaks, intense, aggressive",
+      "instruments": "glitchy synth, distorted 808, chopped breaks",
+      "recommended_duration": 20,
+      "soundfont_hint": "distortion"
+    },
+    "boss_fight": {
+      "label": "Boss Fight Epico",
+      "prompt_prefix": "epic boss fight theme, orchestral, dramatic, intense percussion, choir, brass",
+      "instruments": "orchestral brass, timpani, strings, choir",
+      "recommended_duration": 25,
+      "soundfont_hint": "orchestral"
+    },
+    "8bit": {
+      "label": "8-bit Chiptune (NES)",
+      "prompt_prefix": "8-bit chiptune, NES style, square waves, triangle bass, noise percussion, retro",
+      "instruments": "square lead, triangle bass, noise drums",
+      "recommended_duration": 15,
+      "soundfont_hint": "chip"
+    },
+    "16bit": {
+      "label": "16-bit (SNES/Genesis)",
+      "prompt_prefix": "16-bit era game music, SNES Genesis style, FM synth, sampled instruments, retro",
+      "instruments": "FM synth, sampled brass, synth drums",
+      "recommended_duration": 18,
+      "soundfont_hint": "retro"
+    },
+    "modern": {
+      "label": "Moderno (AAA)",
+      "prompt_prefix": "modern AAA game soundtrack, cinematic, hybrid orchestral electronic, epic",
+      "instruments": "hybrid orchestra, synth pads, taiko drums",
+      "recommended_duration": 20,
+      "soundfont_hint": "orchestral"
+    },
+    "tense": {
+      "label": "Tenso (Suspense)",
+      "prompt_prefix": "tense suspense game music, pulsing strings, low drone, unsettling",
+      "instruments": "low strings, synth drone, tense percussion",
+      "recommended_duration": 20,
+      "soundfont_hint": "strings"
+    },
+    "calm": {
+      "label": "Calmo (Exploracao)",
+      "prompt_prefix": "calm exploration game music, gentle piano, soft pads, ambient",
+      "instruments": "piano, ambient pads, soft strings",
+      "recommended_duration": 25,
+      "soundfont_hint": "piano"
+    },
+    "dungeon": {
+      "label": "Dungeon (Sombrio)",
+      "prompt_prefix": "dark dungeon music, ominous drone, sparse percussion, eerie",
+      "instruments": "low drone, metallic hits, whispered choir",
+      "recommended_duration": 25,
+      "soundfont_hint": "dark"
+    },
+    "victory": {
+      "label": "Vitoria (Fanfarra)",
+      "prompt_prefix": "victory fanfare, triumphant brass, uplifting, celebratory",
+      "instruments": "brass section, timpani, choir",
+      "recommended_duration": 10,
+      "soundfont_hint": "orchestral"
+    },
+    "horror": {
+      "label": "Horror (Terror)",
+      "prompt_prefix": "horror game music, dissonant strings, sudden stabs, unsettling drones",
+      "instruments": "dissonant strings, prepared piano, drones",
+      "recommended_duration": 20,
+      "soundfont_hint": "dark"
+    },
+    "cyberpunk": {
+      "label": "Cyberpunk",
+      "prompt_prefix": "cyberpunk game music, dark synthwave, distorted bass, industrial, neon",
+      "instruments": "analog synth, distorted bass, industrial drums",
+      "recommended_duration": 20,
+      "soundfont_hint": "synth"
+    },
+    "fantasy": {
+      "label": "Fantasia (RPG)",
+      "prompt_prefix": "fantasy RPG music, orchestral, magical, adventure, flute and strings",
+      "instruments": "flute, strings, harp, choir",
+      "recommended_duration": 25,
+      "soundfont_hint": "orchestral"
+    }
+  }
+}
