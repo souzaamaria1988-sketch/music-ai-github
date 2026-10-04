@@ -1,6 +1,5 @@
 __pycache__/
 *.pyc
-checkpoints/
-outputs/
+checkpoints/epoch_*/
 *.log
 .env
