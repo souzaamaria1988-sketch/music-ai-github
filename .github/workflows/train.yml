@@ -11,6 +11,8 @@ on:
       grad_accum:
         description: 'Grad accumulation'
         default: '8'
+permissions:
+  contents: write
 jobs:
   train:
     runs-on: ubuntu-latest
@@ -37,14 +39,18 @@ jobs:
           PYTHONUNBUFFERED: 1
         run: |
           python train.py --epochs ${{ github.event.inputs.epochs || 50 }} --batch ${{ github.event.inputs.batch || 1 }} --grad-accum ${{ github.event.inputs.grad_accum || 8 }}
-      - uses: actions/upload-artifact@v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
           name: trained-model
           path: checkpoints/final/
           retention-days: 30
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: training-logs
-          path: train.log
-          retention-days: 30
+      - name: Commit LoRA back to repo
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          mkdir -p models/latest
+          cp -r checkpoints/final/* models/latest/ 2>/dev/null || true
+          git add models/latest/ || true
+          git commit -m "Update trained model [skip ci]" || echo "No changes"
+          git push || echo "Push skipped"
